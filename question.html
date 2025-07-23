@@ -24,8 +24,8 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(255,255,255,0.5); /* semi-transparent white */
-      backdrop-filter: blur(8px); /* blur effect */
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(8px);
       z-index: 0;
       pointer-events: none;
     }
@@ -50,53 +50,112 @@
       margin-bottom: 12px;
       font-size: 1.1rem;
     }
-    .header-flex {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 30px 0 0 0;
+    /* New header styles */
+    header.hero {
+      background: #e8f5f2;
+      box-shadow: 0 4px 12px rgba(0, 121, 107, 0.15);
+      border-radius: 0 0 15px 15px;
+      padding: 20px 40px;
+      color: #004d40;
       position: relative;
       z-index: 1;
     }
-    .header-logo {
-      height: 80px;
+    .header-flex {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .header-flex > div:first-child {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex: 1 1 auto;
+      min-width: 250px;
+    }
+    .header-flex img {
+      height: 70px;
       width: auto;
-      margin-left: 0;
-      margin-right: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .header-content {
-      text-align: left;
-    }
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
+    .header-flex h1 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin: 0;
       color: #00796b;
-      font-weight: 500;
-      transition: color 0.3s;
+      letter-spacing: 1.2px;
     }
-    nav a:hover {
-      color: #004d40;
+    nav {
+      flex: 2 1 auto;
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .nav-pill {
+      background-color: #00796b;
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      position: relative;
+      transition: background-color 0.3s, color 0.3s;
+      box-shadow: 0 3px 8px rgba(0, 121, 107, 0.4);
+    }
+    .nav-pill::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background-color: #004d40;
+      border-radius: 2px;
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+    .nav-pill:hover {
+      background-color: #004d40;
+      color: #a5d6a7;
+      box-shadow: 0 5px 12px rgba(0, 77, 64, 0.6);
+    }
+    .nav-pill:hover::after {
+      width: 50%;
+      left: 25%;
+    }
+    @media (max-width: 600px) {
+      .header-flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      nav {
+        justify-content: center !important;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="hero" style="background: linear-gradient(135deg, #e0f2f1, #b2dfdb); color: #00796b;">
+  <header class="hero">
     <div class="header-flex">
-      <img src="logo.jpg" alt="Trigo Quest Logo" class="header-logo">
-      <div class="header-content">
+      <div>
+        <img src="logo.jpg" alt="Trigo Quest Logo" />
         <h1>TRIGO QUEST</h1>
-        <nav>
-          <a href="index.html#intro"><strong>Introduction</strong></a>
-          <a href="index.html#how-to-play"><strong>How to Play</strong></a>
-          <a href="index.html#contact"><strong>Contact</strong></a>
-          <a href="question.html"><strong>Trigo Question</strong></a>
-        </nav>
       </div>
+      <nav>
+        <a href="index.html#intro" class="nav-pill">Introduction</a>
+        <a href="index.html#how-to-play" class="nav-pill">How to Play</a>
+        <a href="index.html#contact" class="nav-pill">Contact</a>
+        <a href="question.html" class="nav-pill">Trigo Question</a>
+      </nav>
     </div>
   </header>
+
   <div class="container">
     <h2>Trigo Quest Questions</h2>
     <ul>
@@ -112,7 +171,7 @@
       <p>Watch the video below for a step-by-step guide on how to answer Trigo Quest questions:</p>
       <div style="max-width:600px; margin:20px auto;">
         <video width="100%" height="340" controls>
-          <source src="vd.mp4" type="video/mp4">
+          <source src="vd.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
