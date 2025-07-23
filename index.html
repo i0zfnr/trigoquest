@@ -26,58 +26,76 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(255,255,255,0.5); /* semi-transparent white */
-      backdrop-filter: blur(8px); /* blur effect */
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(8px);
       z-index: 0;
       pointer-events: none;
     }
 
     header.hero {
-      text-align: left;
-      padding: 30px 40px 60px;
+      padding: 20px 40px;
       background: linear-gradient(135deg, #00796b, #004d40);
       color: #fff;
       box-shadow: 0 4px 24px rgba(0,0,0,0.12);
       position: relative;
-      overflow: hidden;
+      z-index: 2;
     }
+
     .header-flex {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      gap: 40px;
+      justify-content: space-between;
       max-width: 1200px;
       margin: 0 auto;
     }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
     .header-logo {
-      height: 100px;
+      height: 60px;
       width: auto;
-      margin-left: 0;
-      margin-right: 30px;
     }
-    .header-content {
-      text-align: left;
-    }
+
     .header-content h1 {
-      font-size: 3.5rem;
-      margin-bottom: 10px;
+      font-size: 2.2rem;
+      margin: 0;
       font-weight: 600;
+      letter-spacing: 1px;
     }
-    .header-content .slogan {
-      font-size: 1.2rem;
-      font-weight: 300;
-      margin-bottom: 18px;
+
+    .slogan {
+      font-size: 1rem;
+      color: #ffe082;
+      margin: 2px 0;
     }
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #b2dfdb;
-      font-weight: 500;
-      transition: color 0.3s;
+
+    nav {
+      display: flex;
+      gap: 15px;
     }
-    nav a:hover {
+
+    .nav-btn {
+      background-color: rgba(255, 255, 255, 0.1);
       color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
+
+    .nav-btn:hover {
+      background-color: #ffffff;
+      color: #004d40;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
     .image-section {
       position: relative;
       z-index: 1;
@@ -92,7 +110,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      backdrop-filter: blur(8px); /* stronger blur effect */
+      backdrop-filter: blur(8px);
       z-index: 0;
     }
 
@@ -108,32 +126,38 @@
       border-radius: 12px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.15);
     }
+
     .container {
       padding: 60px 20px;
       max-width: 1000px;
       margin: auto;
       text-align: center;
     }
+
     h2 {
       font-size: 2.5rem;
       color: #00796b;
       margin-bottom: 20px;
     }
+
     ul {
       list-style: none;
       padding: 0;
     }
+
     ul li {
       padding: 10px 0;
       font-size: 1.1rem;
       position: relative;
     }
+
     ul li::before {
       content: '\2713';
       color: #004d40;
       margin-right: 10px;
       font-weight: bold;
     }
+
     footer {
       text-align: center;
       padding: 30px;
@@ -143,9 +167,11 @@
       position: relative;
       z-index: 1;
     }
+
     [id] {
-      scroll-margin-top: 220px; /* Increase this value to match header height */
+      scroll-margin-top: 220px;
     }
+
     .contact-section {
       background-color: #f9f9f9;
       padding: 40px 20px;
@@ -153,10 +179,12 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       margin-top: 40px;
     }
+
     .contact-section h2 {
       color: #00796b;
       margin-bottom: 20px;
     }
+
     .contact-form {
       display: flex;
       flex-direction: column;
@@ -164,6 +192,7 @@
       max-width: 600px;
       margin: 0 auto;
     }
+
     .contact-form input,
     .contact-form textarea {
       padding: 15px;
@@ -171,6 +200,7 @@
       border-radius: 4px;
       font-size: 1rem;
     }
+
     .contact-form button {
       padding: 15px;
       background-color: #00796b;
@@ -181,6 +211,7 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
+
     .contact-form button:hover {
       background-color: #004d40;
     }
@@ -196,19 +227,22 @@
 
   <header class="hero">
     <div class="header-flex">
-      <img src="logo.jpg" alt="Trigo Quest Logo" class="header-logo">
-      <div class="header-content">
-        <h1 data-aos="fade-down">TRIGO QUEST</h1>
-        <p class="slogan" data-aos="fade-up" data-aos-delay="100">Fun. Active. Meaningful.</p>
-        <nav data-aos="fade-down" data-aos-delay="200">
-          <a href="#intro"><strong>Introduction</strong></a>
-          <a href="#how-to-play"><strong>How to Play</strong></a>
-          <a href="#contact"><strong>Contact</strong></a>
-          <a href="question.html"><strong>Trigo Question</strong></a>
-        </nav>
+      <div class="header-left">
+        <img src="logo.jpg" alt="Trigo Quest Logo" class="header-logo">
+        <div class="header-content">
+          <h1>TRIGO QUEST</h1>
+          <p class="slogan">Fun. Active. Meaningful.</p>
+        </div>
       </div>
+      <nav>
+        <a href="#intro" class="nav-btn">Introduction</a>
+        <a href="#how-to-play" class="nav-btn">How to Play</a>
+        <a href="#contact" class="nav-btn">Contact</a>
+        <a href="question.html" class="nav-btn">Trigo Question</a>
+      </nav>
     </div>
   </header>
+
   <hr style="border: none; border-top: 1px solid #b2dfdb; margin: 24px auto 0; width: 60%;">
 
   <section class="image-section" data-aos="zoom-in">
@@ -267,7 +301,6 @@
       <li><strong>Institution:</strong> Kota Bharu Polytechnic</li>
       <li><strong>Email:</strong> <a href="mailto:official@kbpoly.edu.my">official@kbpoly.edu.my</a></li>
     </ul>
-    <!-- Removed contact form -->
   </section>
 
   <footer data-aos="fade-in">
