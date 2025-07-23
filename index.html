@@ -221,6 +221,46 @@
       z-index: 1;
       background: transparent;
     }
+
+    /* Responsive header styling */
+    @media (max-width: 768px) {
+      .header-flex {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .header-left {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .header-logo {
+        height: 50px;
+        margin-bottom: 10px;
+      }
+
+      .header-content h1 {
+        font-size: 1.8rem;
+      }
+
+      .slogan {
+        font-size: 0.9rem;
+      }
+
+      nav {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        display: flex;
+        gap: 10px;
+      }
+
+      .nav-btn {
+        padding: 8px 14px;
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
