@@ -1,0 +1,122 @@
+/* style.css */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #fdfdfd;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+header.hero {
+  background: linear-gradient(to right, #5ac8fa, #007aff);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header.hero h1 {
+  font-size: 3em;
+  margin: 0;
+}
+
+header.hero .slogan {
+  font-size: 1.2em;
+  margin: 10px 0 20px;
+}
+
+nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffeb3b;
+}
+
+.image-section {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fff;
+}
+
+.image-section img {
+  width: 95%;
+  max-width: 800px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.game-details {
+  background: #f4f9ff;
+  padding: 60px 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #007aff;
+}
+
+p, ul {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+footer {
+  background: #222;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+  header.hero h1 {
+    font-size: 2em;
+  }
+
+  nav a {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .image-section img {
+    width: 100%;
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 1s ease-out;
+}
+
+[id] {
+  scroll-margin-top: 100px; /* Adjust to your header height */
+}
