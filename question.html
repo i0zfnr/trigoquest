@@ -9,11 +9,12 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <style>
     :root {
-      --primary: #00796b;
-      --primary-dark: #004d40;
-      --accent: #ffab40;
-      --text: #333;
-      --light-bg: #f9f9f9;
+      --primary: #4361ee;  /* Vibrant blue */
+      --primary-dark: #3a0ca3; /* Deep purple-blue */
+      --accent: #f72585;   /* Energetic pink */
+      --secondary: #4cc9f0; /* Light blue */
+      --text: #2b2d42;     /* Dark blue-gray */
+      --light-bg: #f8f9fa;
     }
 
     * {
@@ -27,64 +28,107 @@
       background: white;
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     /* ===== HEADER ===== */
     header.hero {
-      background: linear-gradient(135deg, #00796b, #004d40, #002c24);
-      padding: 20px 40px;
+      padding: 15px 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark), #002c24);
+      color: white;
       box-shadow: 0 4px 12px rgba(0, 77, 64, 0.1);
+      position: relative;
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    .math-icons {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .math-icon {
+      position: absolute;
+      color: rgba(255,255,255,0.1);
+      font-size: 1.8rem;
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-100vh) rotate(360deg); }
     }
 
     .header-flex {
-      max-width: 1200px;
-      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    .brand {
+    .header-left {
       display: flex;
       align-items: center;
       gap: 15px;
     }
 
-    .brand img {
+    .header-logo {
       height: 60px;
+      width: auto;
       border-radius: 10px;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
     }
 
-    .brand h1 {
-      font-size: 1.8rem;
-      color: white;
+    .header-logo:hover {
+      transform: rotate(10deg);
+    }
+
+    .header-content h1 {
+      font-size: 2.2rem;
       margin: 0;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .slogan {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: 3px;
+      font-weight: 300;
     }
 
     nav {
       display: flex;
-      gap: 15px;
+      gap: 10px;
     }
 
-    .nav-pill {
-      background: rgba(255, 255, 255, 0.15);
+    .nav-btn {
+      background-color: rgba(255, 255, 255, 0.15);
       color: white;
       padding: 10px 20px;
       border-radius: 30px;
       font-weight: 500;
+      font-size: 0.95rem;
       text-decoration: none;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
       display: flex;
       align-items: center;
       gap: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .nav-pill:hover {
-      background: white;
+    .nav-btn i {
+      font-size: 0.9rem;
+    }
+
+    .nav-btn:hover {
+      background-color: white;
       color: var(--primary-dark);
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -92,99 +136,173 @@
 
     /* ===== MAIN CONTENT ===== */
     .container {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 40px auto;
       padding: 0 20px;
     }
 
-    .question-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .question-header h2 {
-      font-size: 2.2rem;
+    /* Section Titles */
+    h2 {
+      font-size: 2.3rem;
       color: var(--primary-dark);
-      margin-bottom: 15px;
+      margin-bottom: 30px;
+      text-align: center;
       position: relative;
-      display: inline-block;
+      font-weight: 700;
     }
 
-    .question-header h2::after {
+    h2::after {
       content: "";
       position: absolute;
       bottom: -10px;
       left: 50%;
       transform: translateX(-50%);
-      width: 60px;
+      width: 80px;
       height: 4px;
       background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
     }
 
     /* Question Cards */
     .question-card {
       background: white;
-      border-radius: 10px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      border-left: 4px solid var(--primary);
-      transition: all 0.3s;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      border-top: 4px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .question-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
     }
 
     .question-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 77, 64, 0.1);
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(67, 97, 238, 0.15);
     }
 
     .question-card h3 {
       color: var(--primary-dark);
-      margin-bottom: 15px;
-      font-size: 1.3rem;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
     }
 
     .difficulty {
       display: inline-block;
-      padding: 4px 12px;
+      padding: 6px 15px;
       border-radius: 20px;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       font-weight: 600;
       margin-bottom: 15px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
 
     .difficulty-basic {
-      background: #e3f2fd;
-      color: #1976d2;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      color: #1565c0;
+      border-left: 4px solid #1976d2;
     }
 
     .difficulty-intermediate {
-      background: #e8f5e9;
-      color: #388e3c;
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      color: #2e7d32;
+      border-left: 4px solid #388e3c;
     }
 
     .difficulty-advanced {
-      background: #fce4ec;
-      color: #d81b60;
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      color: #c2185b;
+      border-left: 4px solid #d81b60;
+    }
+
+    /* Answer Details */
+    details {
+      margin-top: 20px;
+      background: var(--light-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    details[open] {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    summary {
+      padding: 15px;
+      background: var(--primary);
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      padding-left: 45px;
+    }
+
+    summary:hover {
+      background: var(--primary-dark);
+    }
+
+    summary::before {
+      content: "+";
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+
+    details[open] summary::before {
+      content: "-";
+    }
+
+    details p {
+      padding: 20px;
+      margin: 0;
     }
 
     /* Video Section */
     .video-section {
       background: var(--light-bg);
-      border-radius: 10px;
-      padding: 30px;
+      border-radius: 12px;
+      padding: 40px;
       margin: 50px 0;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="0" y="50" font-family="Arial" font-size="20" fill="%234cc9f020">θπΔ</text></svg>');
+      opacity: 0.3;
     }
 
     .video-container {
       position: relative;
       padding-bottom: 56.25%; /* 16:9 */
       height: 0;
-      margin: 25px auto;
+      margin: 30px auto;
       max-width: 800px;
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     }
 
     .video-container iframe,
@@ -199,54 +317,84 @@
 
     /* Download Section */
     .download-section {
-      background: white;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      background: linear-gradient(135deg, #f5f7fa, #e4e8eb);
+      border-radius: 12px;
+      padding: 40px;
+      margin: 50px 0;
+      text-align: center;
     }
 
     .download-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
     }
 
     .download-card {
-      background: var(--light-bg);
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-      transition: all 0.3s;
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      border-top: 4px solid var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
     }
 
     .download-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 77, 64, 0.1);
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(67, 97, 238, 0.15);
     }
 
     .download-card i {
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: var(--primary);
       margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .download-card i::after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: rgba(67, 97, 238, 0.1);
+      border-radius: 50%;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
     }
 
     .download-btn {
       display: inline-block;
       background: var(--primary);
       color: white;
-      padding: 8px 20px;
+      padding: 12px 25px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: 500;
       margin-top: 15px;
       transition: all 0.3s;
+      box-shadow: 0 3px 10px rgba(67, 97, 238, 0.3);
     }
 
     .download-btn:hover {
       background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 10px rgba(0, 77, 64, 0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
     }
 
     /* ===== FOOTER ===== */
@@ -268,40 +416,62 @@
     .footer-links a {
       color: white;
       font-size: 1.2rem;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.1);
     }
 
     .footer-links a:hover {
       color: var(--accent);
       transform: translateY(-3px);
+      background: white;
     }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .header-flex {
         flex-direction: column;
-        text-align: center;
+        gap: 15px;
       }
 
       nav {
+        flex-wrap: wrap;
         justify-content: center;
       }
 
-      .question-header h2 {
+      h2 {
         font-size: 1.8rem;
+      }
+
+      .download-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
   <header class="hero">
+    <div class="math-icons">
+      <div class="math-icon" style="top: 10%; left: 5%;"><i class="fas fa-superscript"></i></div>
+      <div class="math-icon" style="top: 30%; left: 80%;"><i class="fas fa-square-root-alt"></i></div>
+      <div class="math-icon" style="top: 70%; left: 15%;"><i class="fas fa-greater-than-equal"></i></div>
+      <div class="math-icon" style="top: 20%; left: 50%;"><i class="fas fa-infinity"></i></div>
+    </div>
     <div class="header-flex">
-      <div class="brand">
-        <img src="logo.jpg" alt="Trigo Quest Logo">
-        <h1>TRIGO QUEST</h1>
+      <div class="header-left">
+        <img src="logo.jpg" alt="Trigo Quest Logo" class="header-logo">
+        <div class="header-content">
+          <h1>TRIGO QUEST</h1>
+          <p class="slogan">Fun. Active. Meaningful.</p>
+        </div>
       </div>
       <nav>
-        <a href="index.html" class="nav-pill"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
       </nav>
     </div>
   </header>
@@ -309,41 +479,44 @@
   <main class="container">
     <section class="question-header" data-aos="fade-up">
       <h2>Trigonometry Challenges</h2>
-      <p>Test your skills with these interactive questions</p>
+      <p style="font-size: 1.2rem; color: var(--text);">Test your skills with these interactive questions</p>
     </section>
 
     <section data-aos="fade-up">
-      <div class="question-card">
+      <div class="question-card" data-aos="fade-up" data-aos-delay="100">
         <span class="difficulty difficulty-basic">Basic Level</span>
         <h3>What is the value of sin(30°)?</h3>
         <details>
           <summary>Show Answer</summary>
           <p>Answer: 0.5</p>
+          <p style="margin-top: 10px;"><strong>Explanation:</strong> The sine of 30° is a standard trigonometric value that equals 1/2 or 0.5.</p>
         </details>
       </div>
 
-      <div class="question-card">
+      <div class="question-card" data-aos="fade-up" data-aos-delay="200">
         <span class="difficulty difficulty-intermediate">Intermediate Level</span>
         <h3>Find the hypotenuse if the opposite side is 5 and sin(θ) = 0.6</h3>
         <details>
           <summary>Show Answer</summary>
           <p>Answer: 8.33 (5/0.6)</p>
+          <p style="margin-top: 10px;"><strong>Explanation:</strong> Since sin(θ) = opposite/hypotenuse, we can rearrange to find hypotenuse = opposite/sin(θ) = 5/0.6 ≈ 8.33</p>
         </details>
       </div>
 
-      <div class="question-card">
+      <div class="question-card" data-aos="fade-up" data-aos-delay="300">
         <span class="difficulty difficulty-advanced">Advanced Level</span>
         <h3>Solve for x: 2sin(x) = 1 (0° < x < 180°)</h3>
         <details>
           <summary>Show Answer</summary>
           <p>Answer: x = 30° or 150°</p>
+          <p style="margin-top: 10px;"><strong>Explanation:</strong> First divide both sides by 2 to get sin(x) = 0.5. The solutions in the given range are 30° and 150° (since sin(150°) also equals 0.5).</p>
         </details>
       </div>
     </section>
 
     <section class="video-section" data-aos="fade-up">
       <h2>Video Tutorial</h2>
-      <p>Watch how to solve these problems step-by-step</p>
+      <p style="font-size: 1.2rem;">Watch how to solve these problems step-by-step</p>
       <div class="video-container">
         <video controls poster="video-thumbnail.jpg">
           <source src="vd.mp4" type="video/mp4">
@@ -354,21 +527,24 @@
 
     <section class="download-section" data-aos="fade-up">
       <h2>Download Question Packs</h2>
-      <p>Practice offline with these printable resources</p>
+      <p style="font-size: 1.2rem;">Practice offline with these printable resources</p>
       <div class="download-grid">
-        <div class="download-card">
+        <div class="download-card" data-aos="flip-left">
           <i class="fas fa-file-pdf"></i>
           <h3>Basic Questions</h3>
+          <p>Perfect for beginners learning the fundamentals</p>
           <a href="pdf/RANDOM QUESTIONS.pdf" class="download-btn">Download PDF</a>
         </div>
-        <div class="download-card">
+        <div class="download-card" data-aos="flip-left" data-aos-delay="100">
           <i class="fas fa-file-pdf"></i>
           <h3>Intermediate Pack</h3>
+          <p>Challenging problems for developing skills</p>
           <a href="pdf/TRIGO QUESTION (1).pdf" class="download-btn">Download PDF</a>
         </div>
-        <div class="download-card">
+        <div class="download-card" data-aos="flip-left" data-aos-delay="200">
           <i class="fas fa-file-pdf"></i>
           <h3>Advanced Challenges</h3>
+          <p>Complex problems for trigonometry masters</p>
           <a href="pdf/TRIGO QUESTION (2).pdf" class="download-btn">Download PDF</a>
         </div>
       </div>
@@ -380,13 +556,29 @@
       <a href="https://www.facebook.com/PoliteknikKotaBharuRasmi/" target="_blank"><i class="fab fa-facebook"></i></a>
       <a href="https://x.com/polykb_official/status/1484809795098279936?lang=fa" target="_blank"><i class="fab fa-twitter"></i></a>
       <a href="https://www.instagram.com/YourUsername/" target="_blank"><i class="fab fa-instagram"></i></a>
-  </div>
+    </div>
     <p>&copy; 2025 Trigo Quest. All rights reserved.</p>
   </footer>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
+    
+    // Add floating math icons dynamically
+    document.addEventListener('DOMContentLoaded', function() {
+      const mathIcons = document.querySelector('.math-icons');
+      const icons = ['fa-superscript', 'fa-square-root-alt', 'fa-greater-than-equal', 'fa-infinity', 'fa-pi', 'fa-equals', 'fa-percent'];
+      
+      for (let i = 0; i < 10; i++) {
+        const icon = document.createElement('div');
+        icon.className = 'math-icon';
+        icon.innerHTML = `<i class="fas ${icons[Math.floor(Math.random() * icons.length)]}"></i>`;
+        icon.style.top = `${Math.random() * 100}%`;
+        icon.style.left = `${Math.random() * 100}%`;
+        icon.style.animationDuration = `${15 + Math.random() * 10}s`;
+        mathIcons.appendChild(icon);
+      }
+    });
   </script>
 </body>
 </html>
