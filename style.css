@@ -16,6 +16,11 @@
   box-sizing: border-box;
 }
 
+body, html {
+  width: 100%;
+  max-width: 100%;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   color: var(--text);
