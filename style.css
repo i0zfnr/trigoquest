@@ -447,12 +447,12 @@ details[open] summary::before {
   transition: all 0.3s ease;
 }
 
-/* Calculator */
+/* Calculator Section */
 .calculator-section {
   background: var(--light-bg);
   border-radius: 12px;
-  padding: 40px;
-  margin: 50px 0;
+  padding: 20px;
+  margin: 30px 0;
   text-align: center;
 }
 
@@ -467,13 +467,15 @@ details[open] summary::before {
 
 .calculator-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 15px;
   gap: 10px;
 }
 
 .calculator-select {
-  flex: 1;
+  flex: 1 1 120px;
+  min-width: 120px;
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -482,7 +484,8 @@ details[open] summary::before {
 }
 
 .calculator-input {
-  flex: 2;
+  flex: 2 1 180px;
+  min-width: 180px;
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -492,10 +495,11 @@ details[open] summary::before {
 .calculator-degree {
   font-size: 1.2rem;
   width: 30px;
+  text-align: center;
 }
 
 .calculator-button {
-  flex: 1;
+  flex: 1 1 100%;
   padding: 12px;
   background: var(--primary);
   color: white;
@@ -504,17 +508,66 @@ details[open] summary::before {
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s;
+  min-height: 44px; /* Better touch target */
 }
 
 .calculator-button:hover {
   background: var(--primary-dark);
+  transform: translateY(-2px);
 }
 
 .calculator-result {
   font-size: 1.2rem;
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 10px;
+  width: 100%;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .calculator-section {
+    padding: 15px;
+    margin: 20px 0;
+  }
+  
+  .calculator {
+    padding: 15px;
+  }
+  
+  .calculator-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .calculator-select,
+  .calculator-input {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+  
+  .calculator-degree {
+    display: none; /* Hide degree symbol on mobile */
+  }
+  
+  .calculator-button {
+    margin-top: 10px;
+  }
+}
+
+/* Dark Mode Support */
+body.dark-mode .calculator {
+  background: var(--dark-card);
+  color: var(--dark-text);
+}
+
+body.dark-mode .calculator-select,
+body.dark-mode .calculator-input {
+  background: #2d2d2d;
+  color: var(--dark-text);
+  border-color: #444;
 }
 
 /* Progress Tracker */
@@ -774,21 +827,6 @@ body.dark-mode .calculator-input {
   
   body.dark-mode nav {
     background: var(--dark-card);
-  }
-}
-
-@media (max-width: 768px) {
-  .calculator-row {
-    flex-direction: column;
-  }
-
-  .calculator-select, .calculator-input, .calculator-degree, .calculator-button {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .calculator-degree {
-    width: auto;
   }
 }
 
