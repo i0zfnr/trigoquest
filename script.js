@@ -4,17 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Set current year in footer
   document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-  // Loading animation
-  window.addEventListener('load', function() {
-    setTimeout(() => {
-      document.querySelector('.loader-container').style.opacity = '0';
-      setTimeout(() => {
-        document.querySelector('.loader-container').style.display = 'none';
-      }, 500);
-    }, 500);
-  });
-
+  
   // Mobile navigation toggle
   const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
   const nav = document.querySelector('nav');
