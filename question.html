@@ -7,16 +7,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <link rel="stylesheet" href="style.css"> <!-- Add this line -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+
   <header class="hero">
-    <div class="math-icons">
-      <div class="math-icon" style="top: 10%; left: 5%;"><i class="fas fa-superscript"></i></div>
-      <div class="math-icon" style="top: 30%; left: 80%;"><i class="fas fa-square-root-alt"></i></div>
-      <div class="math-icon" style="top: 70%; left: 15%;"><i class="fas fa-greater-than-equal"></i></div>
-      <div class="math-icon" style="top: 20%; left: 50%;"><i class="fas fa-infinity"></i></div>
-    </div>
+    <div class="math-icons"></div>
     <div class="header-flex">
       <div class="header-left">
         <img src="logo.jpg" alt="Trigo Quest Logo" class="header-logo">
@@ -27,15 +26,31 @@
       </div>
       <nav>
         <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </button>
       </nav>
+      <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
     </div>
   </header>
 
   <main class="container">
     <section class="question-header" data-aos="fade-up">
       <h2>Trigonometry Challenges</h2>
-      <p style="font-size: 1.2rem; color: var(--text);">Test your skills with these interactive questions</p>
+      <p class="subtitle">Test your skills with these interactive questions</p>
     </section>
+
+    <div class="progress-tracker">
+      <p>Progress: <span id="completedQuestions">0</span>/<span id="totalQuestions">0</span></p>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+
+    <div class="difficulty-nav">
+      <button class="difficulty-filter active" data-difficulty="all">All</button>
+      <button class="difficulty-filter" data-difficulty="basic">Basic</button>
+      <button class="difficulty-filter" data-difficulty="intermediate">Intermediate</button>
+      <button class="difficulty-filter" data-difficulty="advanced">Advanced</button>
+    </div>
 
     <section data-aos="fade-up">
       <div class="question-card" data-aos="fade-up" data-aos-delay="100">
@@ -43,8 +58,10 @@
         <h3>What is the value of sin(30°)?</h3>
         <details>
           <summary>Show Answer</summary>
-          <p>Answer: 0.5</p>
-          <p style="margin-top: 10px;"><strong>Explanation:</strong> The sine of 30° is a standard trigonometric value that equals 1/2 or 0.5.</p>
+          <div class="answer-content">
+            <p>Answer: 0.5</p>
+            <p><strong>Explanation:</strong> The sine of 30° is a standard trigonometric value that equals 1/2 or 0.5.</p>
+          </div>
         </details>
       </div>
 
@@ -53,8 +70,10 @@
         <h3>Find the hypotenuse if the opposite side is 5 and sin(θ) = 0.6</h3>
         <details>
           <summary>Show Answer</summary>
-          <p>Answer: 8.33 (5/0.6)</p>
-          <p style="margin-top: 10px;"><strong>Explanation:</strong> Since sin(θ) = opposite/hypotenuse, we can rearrange to find hypotenuse = opposite/sin(θ) = 5/0.6 ≈ 8.33</p>
+          <div class="answer-content">
+            <p>Answer: 8.33 (5/0.6)</p>
+            <p><strong>Explanation:</strong> Since sin(θ) = opposite/hypotenuse, we can rearrange to find hypotenuse = opposite/sin(θ) = 5/0.6 ≈ 8.33</p>
+          </div>
         </details>
       </div>
 
@@ -63,26 +82,54 @@
         <h3>Solve for x: 2sin(x) = 1 (0° < x < 180°)</h3>
         <details>
           <summary>Show Answer</summary>
-          <p>Answer: x = 30° or 150°</p>
-          <p style="margin-top: 10px;"><strong>Explanation:</strong> First divide both sides by 2 to get sin(x) = 0.5. The solutions in the given range are 30° and 150° (since sin(150°) also equals 0.5).</p>
+          <div class="answer-content">
+            <p>Answer: x = 30° or 150°</p>
+            <p><strong>Explanation:</strong> First divide both sides by 2 to get sin(x) = 0.5. The solutions in the given range are 30° and 150° (since sin(150°) also equals 0.5).</p>
+          </div>
         </details>
+      </div>
+    </section>
+
+    <section class="calculator-section" data-aos="fade-up">
+      <h2>Trigonometry Calculator</h2>
+      <div class="calculator">
+        <div class="calculator-row">
+          <select id="trigFunction" class="calculator-select">
+            <option value="sin">sin</option>
+            <option value="cos">cos</option>
+            <option value="tan">tan</option>
+            <option value="asin">sin⁻¹</option>
+            <option value="acos">cos⁻¹</option>
+            <option value="atan">tan⁻¹</option>
+          </select>
+          <input type="number" id="angleInput" class="calculator-input" placeholder="Angle">
+          <span class="calculator-degree">°</span>
+        </div>
+        <div class="calculator-row">
+          <button id="calculateBtn" class="calculator-button">Calculate</button>
+          <div class="calculator-result">
+            <span>Result:</span>
+            <span id="calcResult">0</span>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="video-section" data-aos="fade-up">
       <h2>Video Tutorial</h2>
-      <p style="font-size: 1.2rem;">Watch how to solve these problems step-by-step</p>
+      <p class="subtitle">Watch how to solve these problems step-by-step</p>
       <div class="video-container">
         <video controls poster="video-thumbnail.jpg">
           <source src="vd.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
+        <button class="video-play-button"><i class="fas fa-play"></i></button>
       </div>
     </section>
 
     <section class="download-section" data-aos="fade-up">
       <h2>Download Question Packs</h2>
-      <p style="font-size: 1.2rem;">Practice offline with these printable resources</p>
+      <p class="subtitle">Practice offline with these printable resources</p>
       <div class="download-grid">
         <div class="download-card" data-aos="flip-left">
           <i class="fas fa-file-pdf"></i>
@@ -104,6 +151,8 @@
         </div>
       </div>
     </section>
+
+
   </main>
 
   <footer>
@@ -112,28 +161,10 @@
       <a href="https://x.com/polykb_official/status/1484809795098279936?lang=fa" target="_blank"><i class="fab fa-twitter"></i></a>
       <a href="https://www.instagram.com/YourUsername/" target="_blank"><i class="fab fa-instagram"></i></a>
     </div>
-    <p>&copy; 2025 Trigo Quest. All rights reserved.</p>
+    <p>&copy; <span id="currentYear"></span> Trigo Quest. All rights reserved.</p>
   </footer>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 800, once: true });
-    
-    // Add floating math icons dynamically
-    document.addEventListener('DOMContentLoaded', function() {
-      const mathIcons = document.querySelector('.math-icons');
-      const icons = ['fa-superscript', 'fa-square-root-alt', 'fa-greater-than-equal', 'fa-infinity', 'fa-pi', 'fa-equals', 'fa-percent'];
-      
-      for (let i = 0; i < 10; i++) {
-        const icon = document.createElement('div');
-        icon.className = 'math-icon';
-        icon.innerHTML = `<i class="fas ${icons[Math.floor(Math.random() * icons.length)]}"></i>`;
-        icon.style.top = `${Math.random() * 100}%`;
-        icon.style.left = `${Math.random() * 100}%`;
-        icon.style.animationDuration = `${15 + Math.random() * 10}s`;
-        mathIcons.appendChild(icon);
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
