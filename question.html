@@ -3,63 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trigo Quest Questions</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <title>Trigo Quest Questions | Interactive Trigonometry Challenges</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <style>
+    :root {
+      --primary: #00796b;
+      --primary-dark: #004d40;
+      --accent: #ffab40;
+      --text: #333;
+      --light-bg: #f9f9f9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background: url('math.jpeg') no-repeat center center fixed;
-      background-size: cover;
-      margin: 0;
-      color: #333;
-      position: relative;
-      min-height: 100vh;
-      overflow-x: hidden;
+      background: white;
+      color: var(--text);
+      line-height: 1.6;
     }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(255,255,255,0.5);
-      backdrop-filter: blur(8px);
-      z-index: 0;
-      pointer-events: none;
-    }
-    .container {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 30px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      position: relative;
-      z-index: 1;
-    }
-    h2 {
-      color: #00796b;
-      margin-bottom: 20px;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    li {
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-    }
-    /* New header styles */
+
+    /* ===== HEADER ===== */
     header.hero {
-      background: #e8f5f2;
-      box-shadow: 0 4px 12px rgba(0, 121, 107, 0.15);
-      border-radius: 0 0 15px 15px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       padding: 20px 40px;
-      color: #004d40;
-      position: relative;
-      z-index: 1;
+      box-shadow: 0 4px 20px rgba(0, 77, 64, 0.15);
     }
+
     .header-flex {
       max-width: 1200px;
       margin: 0 auto;
@@ -67,75 +43,252 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 20px;
     }
-    .header-flex > div:first-child {
+
+    .brand {
       display: flex;
       align-items: center;
       gap: 15px;
-      flex: 1 1 auto;
-      min-width: 250px;
     }
-    .header-flex img {
-      height: 70px;
-      width: auto;
+
+    .brand img {
+      height: 60px;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     }
-    .header-flex h1 {
-      font-weight: 700;
+
+    .brand h1 {
       font-size: 1.8rem;
+      color: white;
       margin: 0;
-      color: #00796b;
-      letter-spacing: 1.2px;
     }
+
     nav {
-      flex: 2 1 auto;
       display: flex;
-      justify-content: flex-end;
-      gap: 20px;
-      flex-wrap: wrap;
+      gap: 15px;
     }
+
     .nav-pill {
-      background-color: #00796b;
-      color: #fff;
-      padding: 8px 18px;
-      border-radius: 25px;
-      font-weight: 600;
-      font-size: 0.95rem;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 500;
       text-decoration: none;
-      position: relative;
-      transition: background-color 0.3s, color 0.3s;
-      box-shadow: 0 3px 8px rgba(0, 121, 107, 0.4);
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    .nav-pill::after {
+
+    .nav-pill:hover {
+      background: white;
+      color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .question-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .question-header h2 {
+      font-size: 2.2rem;
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .question-header h2::after {
       content: "";
       position: absolute;
-      bottom: -4px;
+      bottom: -10px;
       left: 50%;
-      width: 0;
-      height: 3px;
-      background-color: #004d40;
-      border-radius: 2px;
-      transition: width 0.3s ease, left 0.3s ease;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
     }
-    .nav-pill:hover {
-      background-color: #004d40;
-      color: #a5d6a7;
-      box-shadow: 0 5px 12px rgba(0, 77, 64, 0.6);
+
+    /* Question Cards */
+    .question-card {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--primary);
+      transition: all 0.3s;
     }
-    .nav-pill:hover::after {
-      width: 50%;
-      left: 25%;
+
+    .question-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 77, 64, 0.1);
     }
-    @media (max-width: 600px) {
+
+    .question-card h3 {
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .difficulty {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .difficulty-basic {
+      background: #e3f2fd;
+      color: #1976d2;
+    }
+
+    .difficulty-intermediate {
+      background: #e8f5e9;
+      color: #388e3c;
+    }
+
+    .difficulty-advanced {
+      background: #fce4ec;
+      color: #d81b60;
+    }
+
+    /* Video Section */
+    .video-section {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 30px;
+      margin: 50px 0;
+      text-align: center;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      margin: 25px auto;
+      max-width: 800px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-container iframe,
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Download Section */
+    .download-section {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .download-card {
+      background: var(--light-bg);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .download-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 77, 64, 0.1);
+    }
+
+    .download-card i {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .download-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 15px;
+      transition: all 0.3s;
+    }
+
+    .download-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 77, 64, 0.2);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: linear-gradient(135deg, var(--primary-dark), #00332a);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .footer-links a {
+      color: white;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
       .header-flex {
         flex-direction: column;
-        align-items: center;
         text-align: center;
       }
+
       nav {
-        justify-content: center !important;
+        justify-content: center;
+      }
+
+      .question-header h2 {
+        font-size: 1.8rem;
       }
     }
   </style>
@@ -143,45 +296,97 @@
 <body>
   <header class="hero">
     <div class="header-flex">
-      <div>
-        <img src="logo.jpg" alt="Trigo Quest Logo" />
+      <div class="brand">
+        <img src="logo.jpg" alt="Trigo Quest Logo">
         <h1>TRIGO QUEST</h1>
       </div>
       <nav>
-        <a href="index.html#intro" class="nav-pill">Home Page</a>
+        <a href="index.html" class="nav-pill"><i class="fas fa-arrow-left"></i> Back to Home</a>
       </nav>
     </div>
   </header>
 
-  <div class="container">
-    <h2>Trigo Quest Questions</h2>
-    <ul>
-      <li>What is the value of sin(30°)?</li>
-      <li>Find the length of the hypotenuse if the opposite side is 5 and sin(θ) = 0.6.</li>
-      <li>What is the formula for tan(θ) in terms of sine and cosine?</li>
-      <li>If cos(θ) = 0.5, what is θ?</li>
-      <li>Solve for x: 2sin(x) = 1, where 0° &lt; x &lt; 180°.</li>
-      <!-- Add more questions as needed -->
-    </ul>
-    <div style="margin-top:32px;">
-      <h3 style="color:#00796b;">Trigo Quest Video Instruction</h3>
-      <p>Watch the video below for a step-by-step guide on how to answer Trigo Quest questions:</p>
-      <div style="max-width:600px; margin:20px auto;">
-        <video width="100%" height="340" controls>
-          <source src="vd.mp4" type="video/mp4" />
+  <main class="container">
+    <section class="question-header" data-aos="fade-up">
+      <h2>Trigonometry Challenges</h2>
+      <p>Test your skills with these interactive questions</p>
+    </section>
+
+    <section data-aos="fade-up">
+      <div class="question-card">
+        <span class="difficulty difficulty-basic">Basic Level</span>
+        <h3>What is the value of sin(30°)?</h3>
+        <details>
+          <summary>Show Answer</summary>
+          <p>Answer: 0.5</p>
+        </details>
+      </div>
+
+      <div class="question-card">
+        <span class="difficulty difficulty-intermediate">Intermediate Level</span>
+        <h3>Find the hypotenuse if the opposite side is 5 and sin(θ) = 0.6</h3>
+        <details>
+          <summary>Show Answer</summary>
+          <p>Answer: 8.33 (5/0.6)</p>
+        </details>
+      </div>
+
+      <div class="question-card">
+        <span class="difficulty difficulty-advanced">Advanced Level</span>
+        <h3>Solve for x: 2sin(x) = 1 (0° < x < 180°)</h3>
+        <details>
+          <summary>Show Answer</summary>
+          <p>Answer: x = 30° or 150°</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="video-section" data-aos="fade-up">
+      <h2>Video Tutorial</h2>
+      <p>Watch how to solve these problems step-by-step</p>
+      <div class="video-container">
+        <video controls poster="video-thumbnail.jpg">
+          <source src="vd.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
+    </section>
+
+    <section class="download-section" data-aos="fade-up">
+      <h2>Download Question Packs</h2>
+      <p>Practice offline with these printable resources</p>
+      <div class="download-grid">
+        <div class="download-card">
+          <i class="fas fa-file-pdf"></i>
+          <h3>Basic Questions</h3>
+          <a href="pdf/RANDOM QUESTIONS.pdf" class="download-btn">Download PDF</a>
+        </div>
+        <div class="download-card">
+          <i class="fas fa-file-pdf"></i>
+          <h3>Intermediate Pack</h3>
+          <a href="pdf/TRIGO QUESTION (1).pdf" class="download-btn">Download PDF</a>
+        </div>
+        <div class="download-card">
+          <i class="fas fa-file-pdf"></i>
+          <h3>Advanced Challenges</h3>
+          <a href="pdf/TRIGO QUESTION (2).pdf" class="download-btn">Download PDF</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
     </div>
-    <div style="margin-top:32px;">
-      <h3 style="color:#00796b;">Download Trigo Question Files</h3>
-      <p>You can also download more trigonometry questions in PDF:</p>
-      <ul>
-        <li><a href="pdf/RANDOM QUESTIONS.pdf" target="_blank"><strong>Trigo Random Questions  (PDF)</strong></a></li>
-        <li><a href="pdf/TRIGO QUESTION (1).pdf" target="_blank"><strong>Trigo Question 1 (PDF)</strong></a></li>
-        <li><a href="pdf/TRIGO QUESTION (2).pdf" target="_blank"><strong>Trigo Questions 2 (PDF)</strong></a></li>
-      </ul>
-    </div>
-  </div>
+    <p>&copy; 2025 Trigo Quest. All rights reserved.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
 </body>
 </html>
