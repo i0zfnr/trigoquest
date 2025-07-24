@@ -4,41 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trigo Quest – Trigonometry Learning Innovation</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <style>
-    body {
+    :root {
+      --primary: #00796b;
+      --primary-dark: #004d40;
+      --accent: #ffab40;
+      --text: #333;
+      --light-bg: #f9f9f9;
+    }
+
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Poppins', sans-serif;
-      color: #333;
+      color: var(--text);
+      background: white;
       overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
-      background: url('math.jpeg') no-repeat center center fixed;
-      background-size: cover;
+      line-height: 1.6;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(255,255,255,0.5);
-      backdrop-filter: blur(8px);
-      z-index: 0;
-      pointer-events: none;
-    }
-
+    /* ===== HEADER ===== */
     header.hero {
-      padding: 20px 40px;
-      background: linear-gradient(135deg, #00796b, #004d40);
-      color: #fff;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      padding: 15px 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
       position: relative;
-      z-index: 2;
+      z-index: 10;
     }
 
     .header-flex {
@@ -56,217 +55,223 @@
     }
 
     .header-logo {
-      height: 70px;
+      height: 60px;
       width: auto;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     }
 
     .header-content h1 {
       font-size: 2.2rem;
       margin: 0;
-      font-weight: 600;
-      letter-spacing: 1px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
 
     .slogan {
       font-size: 1rem;
-      color: #ffe082;
-      margin: 2px 0;
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: 3px;
+      font-weight: 300;
     }
 
     nav {
       display: flex;
-      gap: 15px;
+      gap: 10px;
     }
 
     .nav-btn {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-      padding: 10px 16px;
-      border-radius: 20px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
       font-weight: 500;
       font-size: 0.95rem;
       text-decoration: none;
       transition: all 0.3s ease;
       border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-btn i {
+      font-size: 0.9rem;
     }
 
     .nav-btn:hover {
-      background-color: #ffffff;
-      color: #004d40;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      background-color: white;
+      color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .image-section {
+    /* ===== MAIN CONTENT ===== */
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* Section Titles */
+    h2 {
+      font-size: 2.3rem;
+      color: var(--primary-dark);
+      margin-bottom: 30px;
+      text-align: center;
       position: relative;
-      z-index: 1;
-      overflow: hidden;
-      background: transparent;
+      font-weight: 700;
     }
 
-    .image-section::before {
+    h2::after {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      backdrop-filter: blur(8px);
-      z-index: 0;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
     }
 
-    .image-section img {
-      position: relative;
-      z-index: 1;
-      background: transparent;
-      width: 100%;
-      max-height: 500px;
-      object-fit: cover;
-      display: block;
-      margin: 0 auto;
+    /* Feature Cards */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+    }
+
+    .feature-card {
+      background: white;
       border-radius: 12px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    }
-
-    .container {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-      text-align: center;
-    }
-
-    h2 {
-      font-size: 2.5rem;
-      color: #00796b;
-      margin-bottom: 20px;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    ul li {
-      padding: 10px 0;
-      font-size: 1.1rem;
-      position: relative;
-    }
-
-    ul li::before {
-      content: '\2713';
-      color: #004d40;
-      margin-right: 10px;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
       padding: 30px;
-      background-color: #004d40;
-      color: #fff;
-      font-size: 0.9rem;
-      position: relative;
-      z-index: 1;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      border-top: 4px solid var(--primary);
+      text-align: center;
     }
 
-    [id] {
-      scroll-margin-top: 220px;
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 77, 64, 0.15);
     }
 
-    .contact-section {
-      background-color: #f9f9f9;
-      padding: 40px 20px;
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    /* About Trigo Quest Section */
+    .about-section {
+      background: var(--light-bg);
+      border-radius: 12px;
+      padding: 40px;
+      margin: 50px 0;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .about-text p {
+      margin-bottom: 15px;
+    }
+
+    .about-image img {
+      width: 100%;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      margin-top: 40px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
 
-    .contact-section h2 {
-      color: #00796b;
-      margin-bottom: 20px;
+    /* Contact Section */
+    .contact-section {
+      background: linear-gradient(135deg, #f5f7fa, #e4e8eb);
+      border-radius: 12px;
+      padding: 40px;
+      margin: 50px 0;
+      text-align: center;
     }
 
-    .contact-form {
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .contact-card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-card i {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: linear-gradient(135deg, var(--primary-dark), #00332a);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .footer-links {
       display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 600px;
-      margin: 0 auto;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
     }
 
-    .contact-form input,
-    .contact-form textarea {
-      padding: 15px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
+    .footer-links a {
+      color: white;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
     }
 
-    .contact-form button {
-      padding: 15px;
-      background-color: #00796b;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s;
+    .footer-links a:hover {
+      color: var(--accent);
+      transform: translateY(-3px);
     }
 
-    .contact-form button:hover {
-      background-color: #004d40;
-    }
-
-    .container, .contact-section, .game-details, .image-section img {
-      position: relative;
-      z-index: 1;
-      background: transparent;
-    }
-
-    /* Responsive header styling */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .header-flex {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        gap: 15px;
       }
 
-      .header-left {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .header-logo {
-        height: 50px;
-        margin-bottom: 10px;
-      }
-
-      .header-content h1 {
-        font-size: 1.8rem;
-      }
-
-      .slogan {
-        font-size: 0.9rem;
+      .about-content {
+        grid-template-columns: 1fr;
       }
 
       nav {
-        margin-top: 15px;
         flex-wrap: wrap;
         justify-content: center;
-        display: flex;
-        gap: 10px;
       }
 
-      .nav-btn {
-        padding: 8px 14px;
-        font-size: 0.9rem;
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-
   <header class="hero">
     <div class="header-flex">
       <div class="header-left">
@@ -277,176 +282,114 @@
         </div>
       </div>
       <nav>
-        <a href="question.html" class="nav-btn">Trigo Question</a>
-        <a href="#contact" class="nav-btn">Contact</a>
+        <a href="#intro" class="nav-btn"><i class="fas fa-home"></i> Home</a>
+        <a href="question.html" class="nav-btn"><i class="fas fa-question-circle"></i> Questions</a>
+        <a href="#contact" class="nav-btn"><i class="fas fa-envelope"></i> Contact</a>
       </nav>
     </div>
   </header>
 
-  <hr style="border: none; border-top: 1px solid #b2dfdb; margin: 24px auto 0; width: 60%;">
-
-  <section class="image-section" data-aos="zoom-in">
-    <img src="img.jpg" alt="Trigo Quest board game with students playing in a classroom setting">
-  </section>
-
-  <section class="game-details container" id="intro" data-aos="fade-right">
-    <h2>Welcome to Trigo Quest!</h2>
-    <p>This game is designed to make learning trigonometry interactive and fun.</p>
-    <ul>
-      <li>Engaging board game format</li>
-      <li>Answer questions to move forward</li>
-      <li>Prizes and surprises along the way</li>
-    </ul>
-  </section>
-
-  <!-- New Sections Start Here -->
-
-  <section class="game-details container" id="intro-trigonometry" data-aos="fade-up">
-    <h2>Introduction to Trigonometry</h2>
-    <ul>
-      <li>Definition and meaning of trigonometry</li>
-      <li>Importance in engineering and life</li>
-      <li>Infographics of sin, cos, tan functions</li>
-      <li>Learning objectives based on the syllabus</li>
-    </ul>
-  </section>
-
-  <section class="game-details container" id="teaching-challenges" data-aos="fade-up">
-    <h2>Trigonometry Teaching and Learning Challenges</h2>
-    <ul>
-      <li>List of common challenges faced by students</li>
-      <li>Graphics or excerpts from teacher/student comments</li>
-      <li>Emphasis on the need for teaching and learning innovation</li>
-    </ul>
-  </section>
-
-  <section class="game-details container" id="trigo-quest-innovation" data-aos="fade-up">
-    <h2>TRIGO QUEST Innovation</h2>
-    <ul>
-      <li>What is TRIGO QUEST?</li>
-      <li>Purpose and method of innovation</li>
-      <li>Gamification and active learning concept</li>
-      <li>Picture of game board and cards</li>
-    </ul>
-  </section>
-
-  <section class="game-details container" id="game-mechanism" data-aos="fade-up">
-    <h2>Game Mechanism</h2>
-    <ul>
-      <li>Rules and how to play</li>
-      <li>Special squares such as QR, BOOM, BONUS</li>
-      <li>Score, turn and determination of winner</li>
-    </ul>
-  </section>
-
-  <section class="game-details container" id="question-card-qr" data-aos="fade-up">
-    <h2>Question Card & QR Code</h2>
-    <ul>
-      <li>Card type: Level 1 (Basic), Level 2 (Intermediate), Level 3 (Advanced)</li>
-      <li>Sample card picture</li>
-      <li>Download PDF / PowerPoint card</li>
-      <li>List of QR codes linked</li>
-    </ul>
-  </section>
-
-  <section class="game-details container" id="guide-video" data-aos="fade-up">
-    <h2>Guide Video</h2>
-    <ul>
-      <li>Game demonstration video (if any)</li>
-      <li>Tutorial for teachers and students</li>
-      <li>Play button / YouTube / Google Drive link</li>
-    </ul>
-  </section>
-
-  <section class="game-details container" id="how-to-play" data-aos="fade-left">
-    <h2>How to Play</h2>
-    <p>Get ready for an exciting journey through the world of trigonometry!</p>
-    <ul>
-      <li>Gather your friends and set up the game board.</li>
-      <li>Take turns answering questions and moving your pieces.</li>
-      <li>Be the first to reach the finish line and win!</li>
-    </ul>
-    <div style="margin-top:30px;">
-      <h3 style="color:#00796b;">Trigo Quest Video Instruction</h3>
-      <p>Watch the video below for a step-by-step guide on how to play Trigo Quest:</p>
-      <div style="max-width:600px; margin:20px auto;">
-        <video width="100%" height="340" controls>
-          <source src="vd.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+  <main class="container">
+    <!-- Intro Section -->
+    <section id="intro" data-aos="fade-up">
+      <h2>Welcome to Trigo Quest!</h2>
+      <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
+          <h3>Interactive Gameplay</h3>
+          <p>Learn trigonometry through an engaging board game with challenges and rewards.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon"><i class="fas fa-qrcode"></i></div>
+          <h3>QR Code Challenges</h3>
+          <p>Scan QR codes to unlock bonus questions and real-world applications.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-icon"><i class="fas fa-trophy"></i></div>
+          <h3>Competitive Learning</h3>
+          <p>Track scores on a leaderboard and earn certificates of achievement.</p>
+        </div>
       </div>
-      <div style="margin-top:30px; text-align:center;">
-        <a href="question.html" style="font-weight:bold; color:#00796b; font-size:1.2rem; text-decoration:none;">Trigo Question</a>
+    </section>
+
+    <!-- About Trigo Quest -->
+    <section class="about-section" id="about" data-aos="fade-up">
+      <h2>About Trigo Quest</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p><strong>Trigo Quest</strong> is an innovative board game designed to transform trigonometry learning into an exciting adventure. Developed by educators at Kota Bharu Polytechnic, it addresses common challenges students face with abstract trigonometric concepts.</p>
+          <p>The game combines <strong>gamification</strong> and <strong>active learning</strong> principles to:</p>
+          <ul style="list-style-type: none; margin: 15px 0;">
+            <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Simplify complex topics through hands-on play</li>
+            <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Encourage collaborative problem-solving</li>
+            <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Provide immediate feedback through game mechanics</li>
+          </ul>
+        </div>
+        <div class="about-image" data-aos="zoom-in">
+          <img src="img.jpg" alt="Students playing Trigo Quest">
+        </div>
       </div>
+    </section>
+
+    <!-- Game Features -->
+    <section id="features" data-aos="fade-up">
+      <h2>Game Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-dice"></i></div>
+          <h3>Three Difficulty Levels</h3>
+          <p>From basic sine/cosine to advanced identities, tailored for all learners.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+          <h3>Special Action Squares</h3>
+          <p>BOOM! (lose turns), BONUS (extra points), and QR (video challenges).</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Progress Tracking</h3>
+          <p>Monitor improvement with pre- and post-game assessments.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact" data-aos="fade-up">
+      <h2>Contact Us</h2>
+      <p>Have questions or want to bring Trigo Quest to your school?</p>
+      
+      <div class="contact-info">
+        <div class="contact-card" data-aos="flip-left">
+          <i class="fas fa-user-tie"></i>
+          <h3>Coordinator</h3>
+          <p>Wan Izyani Binti Wan Jusoh</p>
+        </div>
+        <div class="contact-card" data-aos="flip-left" data-aos-delay="100">
+          <i class="fas fa-school"></i>
+          <h3>Institution</h3>
+          <p>Kota Bharu Polytechnic</p>
+        </div>
+        <div class="contact-card" data-aos="flip-left" data-aos-delay="200">
+          <i class="fas fa-envelope"></i>
+          <h3>Email</h3>
+          <p><a href="mailto:official@kbpoly.edu.my">official@kbpoly.edu.my</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
     </div>
-  </section>
-
-  <section class="game-details container" id="features" data-aos="fade-up">
-    <h2>Game Features</h2>
-    <p>Trigo Quest offers a variety of features to enhance your learning experience:</p>
-    <ul>
-      <li>Interactive gameplay that adapts to your skill level.</li>
-      <li>Collaborative challenges that encourage teamwork.</li>
-      <li>Instant feedback to help you learn from your mistakes.</li>
-    </ul>
-  </section>
-
-  <section class="game-details container" id="innovation-impact" data-aos="fade-up">
-    <h2>Innovation Impact</h2>
-    <ul>
-      <li>Pre- and post-game evaluation</li>
-      <li>Student achievement comparison table</li>
-      <li>Teacher/student feedback excerpt</li>
-    </ul>
-  </section>
-
-  <section class="game-details container" id="certificate-leaderboard" data-aos="fade-up">
-    <h2>Certificate & Leaderboard</h2>
-    <ul>
-      <li>Participation certificate template</li>
-      <li>Google form for scores or feedback</li>
-      <li>Player ranking table (Google Sheet or Excel)</li>
-    </ul>
-  </section>
-
-  <section class="game-details container" id="competition-docs" data-aos="fade-up">
-    <h2>Competition Documentation</h2>
-    <ul>
-      <li>Official innovation poster</li>
-      <li>Innovation report (PDF)</li>
-      <li>Complete download materials</li>
-    </ul>
-  </section>
-
-    <section class="contact-section container" id="contact">
-    <h2>Contact Us</h2>
-    <p>If you have any questions or suggestions, feel free to reach out!</p>
-    <ul style="list-style:none; padding:0; margin-bottom:20px;">
-      <li><strong>Coordinator:</strong> Wan Izyani Binti Wan Jusoh</li>
-      <li><strong>Supervisors:</strong> Rozinah@Nurhaizi, Nur Amalina</li>
-      <li><strong>Institution:</strong> Kota Bharu Polytechnic</li>
-      <li><strong>Email:</strong> <a href="mailto:official@kbpoly.edu.my">official@kbpoly.edu.my</a></li>
-    </ul>
-  </section>
-
-  <!-- New Sections End Here -->
-
-  <footer data-aos="fade-in">
-    &copy; 2025 Trigo Quest. All rights reserved.
+    <p>&copy; 2025 Trigo Quest. All rights reserved.</p>
   </footer>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
-  </script>
-  <script>
-    if (window.location.hash) {
-      window.scrollTo(0, 0);
-      history.replaceState(null, null, window.location.pathname);
-    }
+    AOS.init({ duration: 800, once: true });
   </script>
 </body>
 </html>
