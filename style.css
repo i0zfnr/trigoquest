@@ -16,11 +16,6 @@
   box-sizing: border-box;
 }
 
-body, html {
-  width: 100%;
-  max-width: 100%;
-}
-
 body {
   font-family: 'Poppins', sans-serif;
   color: var(--text);
@@ -29,6 +24,11 @@ body {
   line-height: 1.6;
   scroll-behavior: smooth;
   transition: background 0.3s, color 0.3s;
+}
+
+body, html {
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Header Styles */
@@ -151,7 +151,9 @@ nav {
 .container {
   max-width: 1200px;
   margin: 40px auto;
-  padding: 0 20px;
+  padding: 20 80px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 h2 {
@@ -192,7 +194,7 @@ h2::after {
 .feature-card, .question-card, .download-card {
   background: white;
   border-radius: 12px;
-  padding: 30px;
+  padding: 60px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.4s ease;
   border-top: 4px solid var(--primary);
@@ -616,25 +618,6 @@ details[open] summary::before {
   box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
 }
 
-/* Print Button */
-.print-btn {
-  display: block;
-  margin: 30px auto;
-  padding: 12px 25px;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.print-btn:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-}
-
 /* Footer */
 footer {
   background: linear-gradient(135deg, var(--primary-dark), #00332a);
@@ -705,10 +688,6 @@ footer {
 .back-to-top:hover {
   background: var(--accent);
   transform: translateY(-3px);
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 /* Dark Mode Styles */
@@ -795,6 +774,16 @@ body.dark-mode .calculator-input {
   
   body.dark-mode nav {
     background: var(--dark-card);
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-right: 0;
+  }
+  .container {
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 
