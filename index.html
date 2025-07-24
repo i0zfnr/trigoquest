@@ -7,16 +7,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <link rel="stylesheet" href="style.css"> <!-- Add this line -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+
   <header class="hero">
-    <div class="math-icons">
-      <div class="math-icon" style="top: 10%; left: 5%;"><i class="fas fa-superscript"></i></div>
-      <div class="math-icon" style="top: 30%; left: 80%;"><i class="fas fa-square-root-alt"></i></div>
-      <div class="math-icon" style="top: 70%; left: 15%;"><i class="fas fa-greater-than-equal"></i></div>
-      <div class="math-icon" style="top: 20%; left: 50%;"><i class="fas fa-infinity"></i></div>
-    </div>
+    <div class="math-icons"></div>
     <div class="header-flex">
       <div class="header-left">
         <img src="logo.jpg" alt="Trigo Quest Logo" class="header-logo">
@@ -29,7 +28,9 @@
         <a href="#intro" class="nav-btn"><i class="fas fa-home"></i> Home</a>
         <a href="question.html" class="nav-btn"><i class="fas fa-question-circle"></i> Questions</a>
         <a href="#contact" class="nav-btn"><i class="fas fa-envelope"></i> Contact</a>
+        </button>
       </nav>
+      <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
     </div>
   </header>
 
@@ -63,14 +64,14 @@
         <div class="about-text">
           <p><strong>Trigo Quest</strong> is an innovative board game designed to transform trigonometry learning into an exciting adventure. Developed by educators at Kota Bharu Polytechnic, it addresses common challenges students face with abstract trigonometric concepts.</p>
           <p>The game combines <strong>gamification</strong> and <strong>active learning</strong> principles to:</p>
-          <ul style="list-style-type: none; margin: 15px 0;">
-            <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> Simplify complex topics through hands-on play</li>
-            <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> Encourage collaborative problem-solving</li>
-            <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> Provide immediate feedback through game mechanics</li>
+          <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Simplify complex topics through hands-on play</li>
+            <li><i class="fas fa-check-circle"></i> Encourage collaborative problem-solving</li>
+            <li><i class="fas fa-check-circle"></i> Provide immediate feedback through game mechanics</li>
           </ul>
         </div>
         <div class="about-image" data-aos="zoom-in">
-          <img src="img.jpg" alt="Students playing Trigo Quest">
+          <img src="img.jpg" alt="Students playing Trigo Quest" loading="lazy">
         </div>
       </div>
     </section>
@@ -133,28 +134,10 @@
       <a href="https://x.com/polykb_official/status/1484809795098279936?lang=fa" target="_blank"><i class="fab fa-twitter"></i></a>
       <a href="https://www.instagram.com/YourUsername/" target="_blank"><i class="fab fa-instagram"></i></a>
     </div>
-    <p>&copy; 2025 Trigo Quest. All rights reserved.</p>
+    <p>&copy; <span id="currentYear"></span> Trigo Quest. All rights reserved.</p>
   </footer>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 800, once: true });
-    
-    // Add floating math icons dynamically
-    document.addEventListener('DOMContentLoaded', function() {
-      const mathIcons = document.querySelector('.math-icons');
-      const icons = ['fa-superscript', 'fa-square-root-alt', 'fa-greater-than-equal', 'fa-infinity', 'fa-pi', 'fa-equals', 'fa-percent'];
-      
-      for (let i = 0; i < 10; i++) {
-        const icon = document.createElement('div');
-        icon.className = 'math-icon';
-        icon.innerHTML = `<i class="fas ${icons[Math.floor(Math.random() * icons.length)]}"></i>`;
-        icon.style.top = `${Math.random() * 100}%`;
-        icon.style.left = `${Math.random() * 100}%`;
-        icon.style.animationDuration = `${15 + Math.random() * 10}s`;
-        mathIcons.appendChild(icon);
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
