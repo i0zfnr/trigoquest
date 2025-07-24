@@ -9,18 +9,19 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <style>
     :root {
-      --primary: #00796b;
-      --primary-dark: #004d40;
-      --accent: #ffab40;
-      --text: #333;
-      --light-bg: #f9f9f9;
+      --primary: #4361ee;  /* Vibrant blue */
+      --primary-dark: #3a0ca3; /* Deep purple-blue */
+      --accent: #f72585;   /* Energetic pink */
+      --secondary: #4cc9f0; /* Light blue */
+      --text: #2b2d42;     /* Dark blue-gray */
+      --light-bg: #f8f9fa;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
+    } 
 
     body {
       font-family: 'Poppins', sans-serif;
@@ -33,11 +34,33 @@
     /* ===== HEADER ===== */
     header.hero {
       padding: 15px 40px;
-      background: linear-gradient(135deg, #00796b, #004d40, #002c24);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark), #002c24);
       color: white;
       box-shadow: 0 4px 12px rgba(0, 77, 64, 0.1);
       position: relative;
       z-index: 10;
+      overflow: hidden;
+    }
+
+    .math-icons {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .math-icon {
+      position: absolute;
+      color: rgba(255,255,255,0.1);
+      font-size: 1.8rem;
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-100vh) rotate(360deg); }
     }
 
     .header-flex {
@@ -59,6 +82,11 @@
       width: auto;
       border-radius: 10px;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .header-logo:hover {
+      transform: rotate(10deg);
     }
 
     .header-content h1 {
@@ -151,17 +179,44 @@
       transition: all 0.4s ease;
       border-top: 4px solid var(--primary);
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
     }
 
     .feature-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 77, 64, 0.15);
+      box-shadow: 0 15px 30px rgba(67, 97, 238, 0.15);
     }
 
     .feature-icon {
       font-size: 2.5rem;
       color: var(--primary);
       margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .feature-icon::after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: rgba(67, 97, 238, 0.1);
+      border-radius: 50%;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
     }
 
     /* About Trigo Quest Section */
@@ -170,6 +225,19 @@
       border-radius: 12px;
       padding: 40px;
       margin: 50px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="0" y="50" font-family="Arial" font-size="20" fill="%234cc9f020">θπΔ</text></svg>');
+      opacity: 0.3;
     }
 
     .about-content {
@@ -187,6 +255,11 @@
       width: 100%;
       border-radius: 8px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .about-image img:hover {
+      transform: scale(1.02);
     }
 
     /* Contact Section */
@@ -210,12 +283,24 @@
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
     }
 
     .contact-card i {
       font-size: 1.8rem;
       color: var(--primary);
       margin-bottom: 10px;
+      background: rgba(67, 97, 238, 0.1);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* ===== FOOTER ===== */
@@ -238,11 +323,19 @@
       color: white;
       font-size: 1.2rem;
       transition: all 0.3s ease;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.1);
     }
 
     .footer-links a:hover {
       color: var(--accent);
       transform: translateY(-3px);
+      background: white;
     }
 
     /* ===== RESPONSIVE ===== */
@@ -273,6 +366,12 @@
 </head>
 <body>
   <header class="hero">
+    <div class="math-icons">
+      <div class="math-icon" style="top: 10%; left: 5%;"><i class="fas fa-superscript"></i></div>
+      <div class="math-icon" style="top: 30%; left: 80%;"><i class="fas fa-square-root-alt"></i></div>
+      <div class="math-icon" style="top: 70%; left: 15%;"><i class="fas fa-greater-than-equal"></i></div>
+      <div class="math-icon" style="top: 20%; left: 50%;"><i class="fas fa-infinity"></i></div>
+    </div>
     <div class="header-flex">
       <div class="header-left">
         <img src="logo.jpg" alt="Trigo Quest Logo" class="header-logo">
@@ -320,9 +419,9 @@
           <p><strong>Trigo Quest</strong> is an innovative board game designed to transform trigonometry learning into an exciting adventure. Developed by educators at Kota Bharu Polytechnic, it addresses common challenges students face with abstract trigonometric concepts.</p>
           <p>The game combines <strong>gamification</strong> and <strong>active learning</strong> principles to:</p>
           <ul style="list-style-type: none; margin: 15px 0;">
-            <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Simplify complex topics through hands-on play</li>
-            <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Encourage collaborative problem-solving</li>
-            <li><i class="fas fa-check-circle" style="color: var(--primary);"></i> Provide immediate feedback through game mechanics</li>
+            <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> Simplify complex topics through hands-on play</li>
+            <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> Encourage collaborative problem-solving</li>
+            <li><i class="fas fa-check-circle" style="color: var(--accent);"></i> Provide immediate feedback through game mechanics</li>
           </ul>
         </div>
         <div class="about-image" data-aos="zoom-in">
@@ -377,7 +476,7 @@
         <div class="contact-card" data-aos="flip-left" data-aos-delay="300">
           <i class="fas fa-envelope"></i>
           <h3>Email</h3>
-          <p><a href="mailto:official@kbpoly.edu.my">official@kbpoly.edu.my</a></p>
+          <p><a href="mailto:official@kbpoly.edu.my" style="color: var(--primary);">official@kbpoly.edu.my</a></p>
         </div>
       </div>
     </section>
@@ -385,16 +484,32 @@
 
   <footer>
     <div class="footer-links">
-    <a href="https://www.facebook.com/PoliteknikKotaBharuRasmi/" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://x.com/polykb_official/status/1484809795098279936?lang=fa" target="_blank"><i class="fab fa-twitter"></i></a>
-    <a href="https://www.instagram.com/YourUsername/" target="_blank"><i class="fab fa-instagram"></i></a>
-  </div>
+      <a href="https://www.facebook.com/PoliteknikKotaBharuRasmi/" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://x.com/polykb_official/status/1484809795098279936?lang=fa" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/YourUsername/" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
     <p>&copy; 2025 Trigo Quest. All rights reserved.</p>
   </footer>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
+    
+    // Add floating math icons dynamically
+    document.addEventListener('DOMContentLoaded', function() {
+      const mathIcons = document.querySelector('.math-icons');
+      const icons = ['fa-superscript', 'fa-square-root-alt', 'fa-greater-than-equal', 'fa-infinity', 'fa-pi', 'fa-equals', 'fa-percent'];
+      
+      for (let i = 0; i < 10; i++) {
+        const icon = document.createElement('div');
+        icon.className = 'math-icon';
+        icon.innerHTML = `<i class="fas ${icons[Math.floor(Math.random() * icons.length)]}"></i>`;
+        icon.style.top = `${Math.random() * 100}%`;
+        icon.style.left = `${Math.random() * 100}%`;
+        icon.style.animationDuration = `${15 + Math.random() * 10}s`;
+        mathIcons.appendChild(icon);
+      }
+    });
   </script>
 </body>
 </html>
